@@ -4,43 +4,49 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.IBinder;
+import android.util.Log;
 
 import java.util.List;
 
 import static java.lang.System.in;
 
-public class GrayService extends Service {
+public class StaticticsService extends Service {
 //    private IStaticticsService.Stub stab =
 //
 //    };
     private IStaticticsService.Stub stub
         = new IStaticticsService.Stub() {
         @Override
-        public double mean(List numList) {
-            int l = 0;
+        public double mean(double[] numList) {
+            double l = 0;
             for(Object num: numList) {
                 double doubleNum = (double)num;
                 l += doubleNum;
             }
-            return l / numList.size();
+
+            Log.d("debug", Double.toString(l / numList.length));
+            return l / numList.length;
         }
 
         @Override
-        public double variance(List numList) {
+        public double variance(double[] numList) {
             double mean = this.mean(numList);
 
-            int l = 0;
+            double l = 0;
             for(Object num: numList) {
                 double doubleNum = (double)num;
                 l += (doubleNum - mean) * (doubleNum - mean);
             }
-            return l / numList.size();
+
+            Log.d("debug", Double.toString(l / numList.length));
+            return l / numList.length;
         }
     };
 
 
     @Override
     public IBinder onBind(Intent intent) {
+        Log.d("myDebug", "called IBinder");
         return stub;
     }
 }

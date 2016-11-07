@@ -17,9 +17,12 @@
         </activity>
 
         <service
-            android:name=".GrayService"
+            android:name=".StaticticsService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true">
+            <intent-filter>
+                <action android:name="b1013251.itarch.com.aidlpractice.IStaticticsService" />
+            </intent-filter></service>
     </application>
 
 </manifest>
