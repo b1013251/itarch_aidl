@@ -67,8 +67,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         listText.setText(builder.toString());
 
         //サービス呼び出し
-        Intent intent = new Intent(this, StaticticsService.class);
-        bindService(intent.setPackage("com.itarch.b1013251.aidlpractice"),
+        Intent intent = new Intent(IStaticticsService.class.getName());
+        bindService(intent.setPackage("b1013251.itarch.com.aidlpractice"),
                 serviceConnection, BIND_AUTO_CREATE);
         Log.d("myDebug", "Binded.");
     }
